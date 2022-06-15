@@ -1,56 +1,52 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#define P 1000000007
+#define INF 2147483647
+#define INFF 9223372036854775807
+#define pii pair<int,int>
+#define LL long long
+#define endl '\n'
+#define N 100005
+#define IOS ios::sync_with_stdio(false), cin.tie(0)
 using namespace std;
-int rw(int x)
+inline int read()
 {
-	int temp = 0;
-	for (int i = 0; i < 4; i++)
+	int X = 0, w = 0;
+	char ch = 0;
+	while (!isdigit(ch))
 	{
-		temp *= 10;
-		temp += x % 10;
-		x /= 10;
+		w |= ch == '-';
+		ch = getchar();
 	}
-	return temp;
+	while (isdigit(ch)) X = (X << 3) + (X << 1) + (ch ^ 48), ch = getchar();
+	return w ? -X : X;
 }
-bool isValidate(int x)
+void work()
 {
-	int dayInMonth[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	int year = x / 10000;
-	int md = x % 10000;
-	int month = md / 100;
-	int day = md % 100;
-
-	if (month > 12 || month < 1)
-		return false;
-
-	if (year % 4 == 0 && !(year % 100 == 0))
-		dayInMonth[2]++;
-
-	if (day > dayInMonth[month] || day <= 0)
-		return false;
-
-	return true;
+	int n;
+	cin >> n;
+	vector<int>a(n + 1);
+	string st, ori;
+	cin >> st;
+	ori = st;
+	for (int i = 1; i <= n; i++)
+		cin >> a[i];
+	int cnt = 0;
+	while (++cnt)
+	{
+		string str;
+		str.resize(n);
+		for (int i = 1; i <= n; i++)
+			str[i - 1] = st[a[i] - 1];
+		st = str;
+		if (str == ori)
+			break;
+	}
+	cout << cnt << endl;
 }
-int main()
+signed main()
 {
-	int num;
-	cin >> num;
-	int a = num + 1;
-	int b;
-	for (; a < 100000000; a++)
-	{
-		if (a / 10000 == rw(a % 10000) && isValidate(a))
-		{
-			printf("%08d\n", a);
-			break;
-		}
-	}
-	b = a / 10000;
-	for (; b < 10000; b++)
-	{
-		if (b / 100 == b % 100 && isValidate(b * 10000 + rw(b)))
-		{
-			printf("%04d%04d", b, rw(b));
-			break;
-		}
-	}
+	int T = 1; cin >> T;
+	while ( T-- )
+		work();
+	return 0;
 }

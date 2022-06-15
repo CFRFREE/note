@@ -25,7 +25,7 @@ signed main()
         st[i][0] = read();
     for (int j = 1; j <= 20; j++)
         for (int i = 1; i + (1 << j) - 1 <= n; i++)
-            st[i][j] = max(st[i][j - 1], st[i + (1 << j - 1)][j - 1]);
+            st[i][j] = max(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
     int m = read();
     while (m--)
     {
