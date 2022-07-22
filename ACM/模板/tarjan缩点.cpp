@@ -82,9 +82,6 @@ void search(int x)
 int main()
 {
 	n = read(), m = read();
-	for (int i = 1; i <= n; i++)
-		w[i] = read();
-
 	for (int i = 1; i <= m; i++)
 	{
 		e[i].from = read();
@@ -99,7 +96,6 @@ int main()
 	memset(from, 0, sizeof(from));
 	memset(to, 0, sizeof(to));
 	memset(Next, 0, sizeof(Next));
-
 	for (int i = 1; i <= m; i++)
 		if (id[e[i].from] != id[e[i].to])
 			add(id[e[i].from], id[e[i].to]);

@@ -18,6 +18,13 @@ inline int read()
     while (isdigit(ch)) X = (X << 3) + (X << 1) + (ch ^ 48), ch = getchar();
     return w ? -X : X;
 }
+int get_max(int x, int y)
+{
+    if (x > y)
+        return 0;
+    int k = log(y - x + 1) / log(2);
+    return max(st[x][k], st[y - (1 << k) + 1][k]);
+}
 signed main()
 {
     int n = read();
